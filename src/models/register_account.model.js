@@ -55,7 +55,7 @@ async function logIn_DB(email, password) {
     } catch (error) {
         console.error("Something went wrong:", error);
         return {
-            response: "An error occurred during login"
+            response: "An error occurred during login--", error
         };
     }
 }

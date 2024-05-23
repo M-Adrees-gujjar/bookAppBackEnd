@@ -8,9 +8,12 @@ async function signUp(req, res) {
     } else {
         try {
             let result = await signUP_DB(response.username, response.email, response.password, response.confirm_password);
-            res.send({
-                response: result
-            })
+            if (result) {
+                console.log("result------", result);
+                res.send({
+                    response: result
+                })
+            }
         } catch (error) {
             res.status(400).send("Invalid or Wrong--", error);
         }
