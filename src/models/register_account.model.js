@@ -35,7 +35,8 @@ async function signUP_DB(username, email, password, confirm_password) {
 async function logIn_DB(email, password) {
     try {
         await db_conection();
-        const user = await user_details.findOne({ email, password });
+        const user = await user_detials.findOne({ email, password });
+        console.log("LogIn user find-----", user);
         if (user) {
             const token = jwt.sign(
                 { email },

@@ -29,6 +29,7 @@ async function logIn(req, res) {
         try {
             const result = await logIn_DB(response.email, response.password);
             res.send(result);
+            console.log("LogIn---Mongo--res----",result);
         } catch (error) {
             res.status(400).send("Invalid or Wrong--", error);
         }
