@@ -32,6 +32,7 @@ async function signUP_DB(username, email, password, confirm_password) {
         return "Some thing Went Wrong---", error;
     }
 }
+
 async function logIn_DB(email, password) {
     try {
         await db_conection();
@@ -41,7 +42,7 @@ async function logIn_DB(email, password) {
             const token = jwt.sign(
                 { email },
                 process.env.SECRET_KEY,
-                { expiresIn: '1h' }
+                { expiresIn: '365d' }
             );
 
             return {
@@ -60,40 +61,5 @@ async function logIn_DB(email, password) {
         };
     }
 }
-
-
-// async function logIn_DB(email, password) {
-//     try {
-//         await db_conection()
-//         const user = await user_detials.find({
-//             email: email,
-//             password: password
-//         });
-//         if (user.length != 0) {
-//             const key = jwt.sign(
-//                 {
-//                     email: email
-//                 },
-//                 process.env.SECRET_KEY,
-//                 {
-//                     expiresIn: '1h'
-//                 }
-//             );
-//             return {
-//                 token: key,
-//                 response: "LogIn SuccessFull"
-//             }
-//         } else {
-//             return {
-//                 response: "Email or Password are not Correct"
-//             };
-//         }
-//     } catch (error) {
-//         console.log("SomeThing Went Wrong",error);
-//         return {
-//             response: "SomeThing Went Wrong---", error
-//         };
-//     }
-// }
 
 module.exports = { signUP_DB, logIn_DB };
