@@ -1,9 +1,9 @@
-const { postDetailsModel, getDetailsModel } = require('../models/postDetails.model');
+const { postDetailsModel, getDetailsModel, getMyPostsModel } = require('../models/postDetails.model');
 
 async function postDetails(req, res) {
     let result = req.body;
     let email = req.user.email;
-    let resValue = await postDetailsModel(result.company, result.jobTitle, result.jobLocation, result.addDescription, result.setWorkPlace, result.setJobTypeValue, email);
+    let resValue = await postDetailsModel(result.company, result.jobTitle, result.jobLocation, result.addDescription, result.setWorkPlace, result.setJobTypeValue, result.postTime, email);
     if (resValue.success) {
         res.status(200).send({
             response: resValue.response
@@ -24,4 +24,14 @@ async function getPostDetails(req, res) {
     }
 }
 
-module.exports = { postDetails, getPostDetails }
+async function getMyPosts(req, res) {
+    const result = req.user;
+    let response_value = await getMyPostsModel(result.email);
+    if (response_value.success) {
+        res.status(200).send(response_value);
+    } else {
+        res.status(400).send(response_value);
+    }
+}
+
+module.exports = { postDetails, getPostDetails, getMyPosts }

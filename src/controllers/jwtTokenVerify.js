@@ -11,15 +11,12 @@ function verifyAccessToken(token) {
     }
   }
 
-
   function authenticateToken(req, res, next) {
     const authHeader = req.body;
     const token = authHeader.token;
-  
     if (!token) {
       return res.sendStatus(401);
-    }           
-  
+    }
     const result = verifyAccessToken(token);
   
     if (!result.success) {

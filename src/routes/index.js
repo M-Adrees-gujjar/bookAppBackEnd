@@ -1,7 +1,7 @@
 const express = require('express');
 const route = express.Router();
 const { signUp, logIn } = require('../controllers/register_account.controller');
-const {postDetails , getPostDetails} = require('../controllers/postDetails.controller');
+const { postDetails, getPostDetails , getMyPosts} = require('../controllers/postDetails.controller');
 const authenticateToken = require('../controllers/jwtTokenVerify');
 
 route.get('/', function (req, res) {
@@ -10,7 +10,8 @@ route.get('/', function (req, res) {
 
 route.post('/signUP', signUp);
 route.post('/logIn', logIn);
-route.post('/postDetails',authenticateToken, postDetails);
-route.get('/getPostDetails',getPostDetails)
+route.post('/postDetails', authenticateToken, postDetails);
+route.get('/getPostDetails', getPostDetails)
+route.post('/getMyPosts',authenticateToken, getMyPosts);
 
 module.exports = route;

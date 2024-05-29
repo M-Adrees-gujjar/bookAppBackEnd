@@ -8,12 +8,13 @@ const postDetailsSchema = new mongoose.Schema({
     addDescription: String,
     setWorkPlace: String,
     setJobTypeValue: String,
+    postTime: String,
     postUserEmail: String
 });
 
 const postDetails = mongoose.model("postDetails", postDetailsSchema);
 
-async function postDetailsModel(company, jobTitle, jobLocation, addDescription, setWorkPlace, setJobTypeValue, email) {
+async function postDetailsModel(company, jobTitle, jobLocation, addDescription, setWorkPlace, setJobTypeValue, postTime, email) {
     try {
         await db_conection();
         const user = await postDetails({
@@ -23,6 +24,7 @@ async function postDetailsModel(company, jobTitle, jobLocation, addDescription, 
             addDescription: addDescription,
             setWorkPlace: setWorkPlace,
             setJobTypeValue: setJobTypeValue,
+            postTime: postTime,
             postUserEmail: email
         });
         await user.save();
@@ -56,4 +58,21 @@ async function getDetailsModel() {
     }
 }
 
-module.exports = { postDetailsModel, getDetailsModel };
+async function getMyPostsModel(email) {
+    try {
+        await db_conection()
+        const data = await postDetails.find({ "postUserEmail": email });
+        return {
+            success: true,
+            response: data
+        };
+    } catch (error) {
+        console.error("Something went wrong:", error);
+        return {
+            success: false,
+            response: "An error occurred during Fetching--", error
+        };
+    }
+}
+
+module.exports = { postDetailsModel, getDetailsModel, getMyPostsModel };
