@@ -14,9 +14,7 @@ async function signUP_DB(username, email, password, confirm_password) {
     try {
         await db_conection()
         const user_find = await user_detials.findOne({ email: email });
-
         if (user_find) {
-            console.log("user------", user_find);
             return "Email already Exist"
         }
 

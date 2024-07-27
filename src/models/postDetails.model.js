@@ -53,7 +53,7 @@ async function postDetailsDeleteModel(id) {
         console.error("Something went wrong:", error);
         return {
             success: false,
-            response: "An error occurred during saving--", error
+            response: "An error occurred during deleting--", error
         };
     }
 }
