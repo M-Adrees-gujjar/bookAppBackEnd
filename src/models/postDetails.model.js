@@ -41,6 +41,23 @@ async function postDetailsModel(company, jobTitle, jobLocation, addDescription, 
     }
 }
 
+async function postDetailsDeleteModel(id) {
+    try {
+        await db_conection();
+        await postDetails.findOneAndDelete({_id : id});
+        return {
+            success: true,
+            response: "Post Delete SuccessFully"
+        };
+    } catch (error) {
+        console.error("Something went wrong:", error);
+        return {
+            success: false,
+            response: "An error occurred during saving--", error
+        };
+    }
+}
+
 async function getDetailsModel() {
     try {
         await db_conection()
@@ -75,4 +92,4 @@ async function getMyPostsModel(email) {
     }
 }
 
-module.exports = { postDetailsModel, getDetailsModel, getMyPostsModel };
+module.exports = { postDetailsModel, getDetailsModel, getMyPostsModel , postDetailsDeleteModel};

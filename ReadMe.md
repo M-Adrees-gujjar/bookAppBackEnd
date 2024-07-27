@@ -28,28 +28,18 @@ password
 "confirm_password" : "123"
 }
 
+---
 
+Summary, skill, euducation, Language , List addproject [projectTitle, Compnay Name , ProjectUrl , ClinetUrl, Tools, Description]
 
+---
 
-
-        // if (password == confirm_password) {
-        //     const user = await user_detials.find({
-        //         email: email,
-        //         password: password
-        //     });
-        //     if (user.length == 0) {
-        //         const user = await user_detials({
-        //             username: username,
-        //             email: email,
-        //             password: password
-        //         });
-        //         await user.save();
-        //         return "SignUP SuccessFull"
-        //     } else {
-        //         console.log("Email already Exist");
-        //         return "Email already Exist"
-        //     }
-        // } else {
-        //     console.log("Password Does not Match with Confirm Password");
-        //     return "Password Does not Match with Confirm Password";
-        // }
+    addproject: [
+        {
+            projectTitle: projectTitle,
+            compnay_name: String,
+            projectUrl: String,
+            clinetUrl: String,
+            tools: String,
+            description: String
+        }]
