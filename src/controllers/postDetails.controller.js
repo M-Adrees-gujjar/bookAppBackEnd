@@ -24,7 +24,7 @@ async function postDetails(req, res) {
         });
     } else {
         res.status(500).send({
-            response: res.response,
+            response: resValue.response,
         });
     }
 }
@@ -38,7 +38,7 @@ async function postDetailsDelete(req, res) {
         });
     } else {
         res.status(500).send({
-            response: res.response,
+            response: resValue.response,
         });
     }
 }
